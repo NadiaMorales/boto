@@ -53,11 +53,33 @@ function receiveMessage(event) {
 function evaluateMessage(recipientId, message) {
     var finalMessage = '';
 
-    if (isContain(message, 'parques')) {
-        finalMessage = 'si miras el mapa podras encontrar algunos parques';
+    if (isContain(message, 'hola')) {
+        finalMessage = 'Hola, Bienvenido a NEAR ME';
+    } else if(isContain(message, 'como estas?')){
+
+        finalMessage = 'Bien gracias ¿y tú?';
+
+    } else if (isContain(message, 'parque')) {
+
+        finalMessage = 'si miras el mapa podrás encontrar algunos parques';
+
+    } else if (isContain(message, 'parques')) {
+
+        finalMessage = 'si miras el mapa podrás encontrar algunos parques';
+
+    } else if (isContain(message, 'mapa')) {
+        
+        finalMessage = 'en el mapa puedes trazar tu ruta';
+    
+    } else if (isContain(message, 'ruta')) {
+
+        finalMessage = 'aqui puedes elegir el medio de transporte a usar ' + sendMessageImage(recipientId);
+
     } else {
-        finalMessage = 'solo se repetir las cosas : ' + message;
-    }
+
+        finalMessage = 'NearMe te ayuda a encontrar los parques cercanos a tu ubicación y te dice como llegar';
+    } 
+
     sendMessageText(recipientId, finalMessage);
 }
 
@@ -68,6 +90,23 @@ function sendMessageText(recipientId, message) {
         },
         message: {
             text: message
+        }
+    };
+    callSendAPI(messageData);
+}
+
+function sendMessageImage(recipientId) {
+    var messageData = {
+        recipient: {
+            id: recipientId
+        },
+        message: {
+            attachment: {
+                type: 'image',
+                payload: {
+                    url: 'https://raw.githubusercontent.com/NadiaMorales/x3Place/master/bot/img/transporte.png'
+                }
+            }
         }
     };
     callSendAPI(messageData);
