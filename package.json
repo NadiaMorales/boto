@@ -1,0 +1,8 @@
+{
+  "name": "prueba_ecommerce",
+  "version": "0.1.0",
+  "description": "my first bot",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
